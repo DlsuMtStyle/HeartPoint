@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:background="#F5F5F5">
+
+        <!-- 頂部標題 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首頁"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:textColor="#484274" />
+
+        <!-- 篩選按鈕區 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <!-- 類型按鈕 -->
+            <Button
+                android:id="@+id/btn_type"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="類型"
+                android:drawableEnd="@drawable/ic_dropdown"
+                android:padding="8dp"
+                android:textColor="#4A4A4A"
+                android:gravity="start|center_vertical"
+                app:strokeColor="#4A4A4A"
+                app:strokeWidth="1dp"
+                app:cornerRadius="8dp"
+                app:backgroundTint="@color/mainwhite" />
+
+            <!-- 區域按鈕 -->
+            <Button
+                android:id="@+id/btn_region"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="地區"
+                android:drawableEnd="@drawable/ic_dropdown"
+                android:padding="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="#4A4A4A"
+                android:gravity="start|center_vertical"
+                app:strokeColor="#4A4A4A"
+                app:strokeWidth="1dp"
+                app:cornerRadius="8dp"
+                app:backgroundTint="@color/mainwhite"/>
+
+            <!-- 篩選按鈕 -->
+            <ImageButton
+                android:id="@+id/btn_filter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_filter"
+                android:background="@drawable/filter_background"
+                android:contentDescription="Filter" />
+        </LinearLayout>
+
+        <!-- 活動列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_events"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+</FrameLayout>

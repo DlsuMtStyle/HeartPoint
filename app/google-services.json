@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "66972296461",
+    "project_id": "haeartpoint",
+    "storage_bucket": "haeartpoint.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66972296461:android:702d01cc459c0cfe32bc44",
+        "android_client_info": {
+          "package_name": "com.example.heartpoint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJTfinnvBMu4njOUyLvJHdLiTXmgiM3MU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
