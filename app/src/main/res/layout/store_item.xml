@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- 商店圖片 -->
+        <ImageView
+            android:id="@+id/img_store"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cafe"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 標題 -->
+        <TextView
+            android:id="@+id/tv_store_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="7-11大冰美限時兌換"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/img_store"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- 類別 -->
+        <TextView
+            android:id="@+id/tv_store_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="飲料"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <!-- 日期 -->
+        <TextView
+            android:id="@+id/tv_store_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2024-12-01 ~ 2025-02-01"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_category"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp" />
+
+        <!-- 愛心符號和數量 -->
+        <TextView
+            android:id="@+id/tv_store_love_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="❤️ 10"
+            android:textColor="#FF4081"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/tv_store_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
