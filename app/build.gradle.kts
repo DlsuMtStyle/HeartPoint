@@ -39,6 +39,8 @@ android {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth:23.1.0")
+    implementation("com.google.firebase:firebase-firestore:25.1.1")
     implementation("com.google.firebase:firebase-firestore-ktx")       // Firestore 庫
     implementation("com.github.bumptech.glide:glide:4.15.1") // Glide 庫
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1") // 編譯工具
