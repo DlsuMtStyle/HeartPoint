@@ -35,48 +35,36 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
 
-            <!-- 類型按鈕 -->
-            <Button
-                android:id="@+id/btn_type"
+            <!-- 類型下拉列表 -->
+            <Spinner
+                android:id="@+id/spinner_type"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="類型"
-                android:drawableEnd="@drawable/ic_dropdown"
-                android:padding="8dp"
-                android:textColor="#4A4A4A"
-                android:gravity="start|center_vertical"
-                app:strokeColor="#4A4A4A"
-                app:strokeWidth="1dp"
-                app:cornerRadius="8dp"
-                app:backgroundTint="@color/mainwhite" />
+                android:background="@drawable/spinner_background"
+                android:popupBackground="#F5F5F5"
+                android:padding="8dp" />
 
-            <!-- 區域按鈕 -->
-            <Button
-                android:id="@+id/btn_region"
+            <!-- 地區下拉列表 -->
+            <Spinner
+                android:id="@+id/spinner_region"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="地區"
-                android:drawableEnd="@drawable/ic_dropdown"
+                android:background="@drawable/spinner_background"
+                android:popupBackground="#F5F5F5"
                 android:padding="8dp"
-                android:layout_marginStart="8dp"
-                android:textColor="#4A4A4A"
-                android:gravity="start|center_vertical"
-                app:strokeColor="#4A4A4A"
-                app:strokeWidth="1dp"
-                app:cornerRadius="8dp"
-                app:backgroundTint="@color/mainwhite"/>
+                android:layout_marginStart="8dp" />
 
             <!-- 篩選按鈕 -->
-            <ImageButton
-                android:id="@+id/btn_filter"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
+            <ImageView
+                android:id="@+id/img_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_filter"
-                android:background="@drawable/filter_background"
-                android:contentDescription="Filter" />
+                android:layout_marginStart="8dp"
+                android:padding="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
         </LinearLayout>
 
         <!-- 活動列表 -->

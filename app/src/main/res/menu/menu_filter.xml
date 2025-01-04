@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/filter_point_desc"
+        android:title="點數：大到小" />
+    <item
+        android:id="@+id/filter_point_asc"
+        android:title="點數：小到大" />
+    <item
+        android:id="@+id/filter_date_desc"
+        android:title="時間：近到遠" />
+    <item
+        android:id="@+id/filter_date_asc"
+        android:title="時間：遠到近" />
+</menu>
