@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#303030</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="mainblue">#424874</color>\
+    <color name="mainblue">#424874</color>
     <color name="gray">#9E9E9E</color>
     <color name="mainwhite">#F5F5F5</color>
+    <color name="purple_500">#6200EE</color> <!-- 新增紫色 -->
 </resources>
