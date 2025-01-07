@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,8 +38,51 @@ class Fragment_store : Fragment() {
         adapter = StoreAdapter(storeList)
         recyclerView.adapter = adapter
 
+        // 設定篩選按鈕
+        setupFilterButtons(view)
+
         // 加載資料
         fetchStoresFromDatabase()
+    }
+
+    // 設定篩選按鈕的點擊事件
+    private fun setupFilterButtons(view: View) {
+        val btnType: Button = view.findViewById(R.id.btn_type)
+        val btnPoints: Button = view.findViewById(R.id.btn_points)
+        val btnTime: Button = view.findViewById(R.id.btn_time)
+
+        btnType.setOnClickListener {
+            // 根據類型篩選資料
+            filterStoresByType()
+        }
+
+        btnPoints.setOnClickListener {
+            // 根據點數篩選資料
+            filterStoresByPoints()
+        }
+
+        btnTime.setOnClickListener {
+            // 根據時間篩選資料
+            filterStoresByTime()
+        }
+    }
+
+    // 根據類型篩選商店資料
+    private fun filterStoresByType() {
+        val filteredList = storeList.filter { it.category == "飲料" } // 篩選類型為 "飲料"
+        adapter.updateData(filteredList)
+    }
+
+    // 根據點數篩選商店資料
+    private fun filterStoresByPoints() {
+        val filteredList = storeList.sortedByDescending { it.love_count } // 按點數排序
+        adapter.updateData(filteredList)
+    }
+
+    // 根據時間篩選商店資料
+    private fun filterStoresByTime() {
+        val filteredList = storeList.sortedBy { it.date } // 按時間排序
+        adapter.updateData(filteredList)
     }
 
     // 從 Firebase Firestore 獲取數據
@@ -51,15 +95,16 @@ class Fragment_store : Fragment() {
                     val category = document.getString("category") ?: "未知類別"
                     val date = document.getString("date") ?: "未知日期"
                     val image = document.getString("image") ?: "未知圖片"
-                    val loveCount = document.getString("love_count") ?: "❤️ 0"
+                    val love_count = document.getLong("love_count")?.toInt() ?: 0
+                    val love_image = document.getString("love_image") ?: "未知愛心圖片"
 
-                    storeList.add(Store(title, category, date, image, loveCount))
+                    storeList.add(Store(title, category, date, image, love_count, love_image))
                 }
-                adapter.notifyDataSetChanged() // 通知 RecyclerView 更新
+                adapter.updateData(storeList) // 加載完整資料
             }
             .addOnFailureListener { exception ->
-                // 這裡處理數據加載錯誤
                 exception.printStackTrace()
             }
     }
 }
+
