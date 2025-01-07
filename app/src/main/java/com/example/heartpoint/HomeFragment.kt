@@ -1,6 +1,7 @@
 package com.example.heartpoint
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heartpoint.adapters.EventAdapter
 import com.example.heartpoint.models.Event
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -41,7 +41,12 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.rv_events)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = EventAdapter(eventsList)
+        adapter = EventAdapter(eventsList) { event ->
+            // 點擊事件的處理邏輯
+            val intent = Intent(requireContext(), EventDetailsActivity::class.java)
+            intent.putExtra("eventId", event.id) // 傳遞活動的 ID
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
 
         // 加載所有資料
@@ -112,21 +117,42 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun fetchEventsFromDatabase() {
-        db.collection("events")
+        db.collection("events") // 假設資料庫中的集合名稱為 "events"
             .get()
             .addOnSuccessListener { documents ->
+                eventsList.clear()
                 for (document in documents) {
+                    val id = document.id
                     val title = document.getString("title") ?: "未知活動"
-                    val category = document.getString("category") ?: "未知類型"
                     val location = document.getString("location") ?: "未知地點"
+                    val locationDetail = document.getString("location_detail") ?: "未知詳細地址"
                     val date = document.getString("date") ?: "未知日期"
-                    val image = document.getString("image") ?: "未知圖片"
-                    val point = document.getLong("point") ?: 0L
-                    eventsList.add(Event(title, category, location, date, image, point))
+                    val time = document.getString("time") ?: "未知時間"
+                    val applyDeadline = document.getString("apply_deadline") ?: "未知截止日期"
+                    val point = document.getLong("point") ?: 0
+                    val image = document.getString("image") ?: ""
+                    val category = document.getString("category") ?: "未知類型"
+
+                    // 更新 Event 的初始化
+                    eventsList.add(
+                        Event(
+                            id = id,
+                            title = title,
+                            location = location,
+                            location_detail = locationDetail,
+                            date = date,
+                            time = time,
+                            apply_deadline = applyDeadline,
+                            point = point,
+                            image = image,
+                            category = category
+                        )
+                    )
                 }
-                adapter.notifyDataSetChanged()
+                adapter.notifyDataSetChanged() // 通知 RecyclerView 更新
             }
             .addOnFailureListener { exception ->
+                // 處理錯誤
                 exception.printStackTrace()
             }
     }
@@ -153,12 +179,16 @@ class HomeFragment : Fragment() {
                 } else {
                     val filteredEvents = querySnapshot.documents.map { document ->
                         Event(
+                            id = document.id,
                             title = document.getString("title") ?: "",
                             location = document.getString("location") ?: "",
                             date = document.getString("date") ?: "",
                             category = document.getString("category") ?: "",
                             image = document.getString("image") ?: "",
-                            point = document.getLong("point") ?: 0L
+                            point = document.getLong("point") ?: 0L,
+                            location_detail = document.getString("location_detail") ?: "",
+                            time = document.getString("time") ?: "",
+                            apply_deadline = document.getString("apply_deadline") ?: ""
                         )
                     }
                     updateRecyclerView(filteredEvents)
@@ -195,12 +225,16 @@ class HomeFragment : Fragment() {
             .addOnSuccessListener { querySnapshot ->
                 val sortedEvents = querySnapshot.documents.map { document ->
                     Event(
+                        id = document.id,
                         title = document.getString("title") ?: "",
                         location = document.getString("location") ?: "",
                         date = document.getString("date") ?: "",
                         category = document.getString("category") ?: "",
                         image = document.getString("image") ?: "",
-                        point = document.getLong("point") ?: 0L
+                        point = document.getLong("point") ?: 0L,
+                        location_detail = document.getString("location_detail") ?: "",
+                        time = document.getString("time") ?: "",
+                        apply_deadline = document.getString("apply_deadline") ?: ""
                     )
                 }
                 // 更新 RecyclerView

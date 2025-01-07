@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.heartpoint.R
 import com.example.heartpoint.models.Event
 
-class EventAdapter(private val events: List<Event>) :
+class EventAdapter(private val events: List<Event>, private val onItemClick: (Event) -> Unit) :
     RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,6 +20,15 @@ class EventAdapter(private val events: List<Event>) :
         val location: TextView = itemView.findViewById(R.id.tv_location)
         val date: TextView = itemView.findViewById(R.id.tv_date)
         val image: ImageView = itemView.findViewById(R.id.img_event)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(events[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -38,6 +47,10 @@ class EventAdapter(private val events: List<Event>) :
             .load(event.image)
             .placeholder(ColorDrawable(Color.LTGRAY))
             .into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(event) // 點擊時傳遞 `event`
+        }
     }
 
     override fun getItemCount() = events.size

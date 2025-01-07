@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> loadFragment(HomeFragment())
-//                R.id.nav_search -> loadFragment(SearchFragment())
+                R.id.nav_search -> loadFragment(SearchFragment())
                 R.id.nav_shop -> loadFragment(Fragment_store())
-//                R.id.nav_profile -> loadFragment(ProfileFragment())
+                R.id.nav_profile -> loadFragment(UserFragment())
             }
             true
         }
