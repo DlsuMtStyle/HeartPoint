@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_gift">
+
+    <!-- 頂部標題 -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="禮物盒"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:textColor="#484274"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 篩選按鈕區 -->
+    <LinearLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <!-- 類型按鈕 -->
+        <Button
+            android:id="@+id/btn_type"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="類型"
+            android:drawableEnd="@drawable/ic_dropdown"
+            android:padding="8dp"
+            android:textColor="#4A4A4A"
+            android:gravity="start|center_vertical"
+            app:strokeColor="#4A4A4A"
+            app:strokeWidth="1dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/mainwhite" />
+
+        <!-- 點數按鈕 -->
+        <Button
+            android:id="@+id/btn_points"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="點數"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="#4A4A4A"
+            android:gravity="start|center_vertical"
+            app:strokeColor="#4A4A4A"
+            app:strokeWidth="1dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/mainwhite"/>
+
+        <!-- 時間按鈕 -->
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="時間"
+            android:padding="8dp"
+            android:layout_marginStart="8dp"
+            android:textColor="#4A4A4A"
+            android:gravity="start|center_vertical"
+            app:strokeColor="#4A4A4A"
+            app:strokeWidth="1dp"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/mainwhite"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_gift"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/rv_gift"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
