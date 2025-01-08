@@ -5,18 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_store">
+    tools:context=".Fragment_store"
+    android:background="#F5F5F5">
 
     <!-- 頂部標題 -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="商店"
+        android:text="點數商店"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         android:textColor="#484274"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +36,15 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title">
 
         <!-- 類型按鈕 -->
-        <Button
-            android:id="@+id/btn_type"
+        <Spinner
+            android:id="@+id/spinner_type"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="類型"
-            android:drawableEnd="@drawable/ic_dropdown"
+            android:background="@drawable/spinner_background"
+            android:popupBackground="#F5F5F5"
             android:padding="8dp"
-            android:textColor="#4A4A4A"
-            android:gravity="start|center_vertical"
-            app:strokeColor="#4A4A4A"
-            app:strokeWidth="1dp"
-            app:cornerRadius="8dp"
-            app:backgroundTint="@color/mainwhite" />
+            android:layout_marginStart="8dp" />
 
         <!-- 點數按鈕 -->
         <Button

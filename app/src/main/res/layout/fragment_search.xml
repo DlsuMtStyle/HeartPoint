@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:textColor="#424874" />
 
     <!-- 搜索欄 -->
@@ -23,7 +23,7 @@
         android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="輸入關鍵字"
+        android:hint="  輸入關鍵字"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:background="@drawable/search_bar_background"

@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,6 +70,21 @@ class UserFragment : Fragment() {
             val intent = Intent(requireContext(), EditUserInfoActivity::class.java)
             startActivity(intent)
         }
+
+        // 初始化登出按鈕
+        val btnLogout: TextView = view.findViewById(R.id.tv_logout)
+
+        btnLogout.setOnClickListener {
+            val auth = FirebaseAuth.getInstance()
+            auth.signOut() // 執行登出操作
+
+            // 跳轉至登入頁面
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(requireContext(), "您已成功登出", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 }

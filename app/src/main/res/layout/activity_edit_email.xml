@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <!-- 返回按鈕與標題 -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="返回"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您個人"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#424874" />
+    </LinearLayout>
+
+    <!-- 卡片內容 -->
+    <LinearLayout
+        android:id="@+id/edit_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_card_background"
+        android:backgroundTint="#FFF"
+        android:layout_below="@id/header_layout"
+        android:layout_centerHorizontal="true">
+
+        <!-- 修改 Email 標題 -->
+        <TextView
+            android:id="@+id/tv_edit_email_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改 Email"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp" />
+
+        <!-- 輸入框 -->
+        <EditText
+            android:id="@+id/et_new_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="輸入新的 Email"
+            android:inputType="textEmailAddress"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tv_edit_pw_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="舊密碼驗證"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="輸入密碼"
+            android:background="@android:color/transparent"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 確認修改按鈕 -->
+        <Button
+            android:id="@+id/btn_update_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#424874"
+            android:text="更新 Email"
+            android:textColor="@color/mainwhite"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingVertical="8dp"
+            android:paddingHorizontal="32dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>
