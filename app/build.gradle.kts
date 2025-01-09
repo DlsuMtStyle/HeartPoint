@@ -42,7 +42,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation("com.google.firebase:firebase-firestore:25.1.1")
     implementation("com.google.firebase:firebase-firestore-ktx")       // Firestore 庫
-    implementation("com.github.bumptech.glide:glide:4.15.1") // Glide 庫
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.play.services.analytics.impl) // Glide 庫
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1") // 編譯工具
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(libs.androidx.core.ktx)

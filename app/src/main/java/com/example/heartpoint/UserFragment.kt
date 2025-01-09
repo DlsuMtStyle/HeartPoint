@@ -65,6 +65,22 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 獲取 TextView
+        val tvUsername = view.findViewById<TextView>(R.id.tv_username)
+
+        // 獲取當前用戶 Email 並顯示
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val email = currentUser.email
+            if (!email.isNullOrEmpty()) {
+                tvUsername.text = email // 顯示 Email
+            } else {
+                tvUsername.text = "無法獲取 Email"
+            }
+        } else {
+            tvUsername.text = "用戶未登錄"
+        }
+
         val editIcon = view.findViewById<ImageView>(R.id.img_edit_username)
         editIcon.setOnClickListener {
             val intent = Intent(requireContext(), EditUserInfoActivity::class.java)
@@ -85,6 +101,25 @@ class UserFragment : Fragment() {
             Toast.makeText(requireContext(), "您已成功登出", Toast.LENGTH_SHORT).show()
         }
 
-    }
+        // 初始化禮物盒按鈕
+        val btnGift: TextView = view.findViewById(R.id.tv_gift_box)
+        btnGift.setOnClickListener {
+            val intent = Intent(requireContext(), GiftActivity::class.java)
+            startActivity(intent) // 跳轉到禮物盒介面
+        }
 
+        // 初始化禮物兌換紀錄按鈕
+        val btnRedeemRecord: TextView = view.findViewById(R.id.tv_exchange_history)
+        btnRedeemRecord.setOnClickListener {
+            val intent = Intent(requireContext(), GiftRedeemRecordActivity::class.java)
+            startActivity(intent) // 跳轉到禮物盒介面
+        }
+
+        // 初始化活動報名紀錄按鈕
+        val btnEventApplyRecord: TextView = view.findViewById(R.id.tv_event_registration_history)
+        btnEventApplyRecord.setOnClickListener {
+            val intent = Intent(requireContext(), EventRecordActivity::class.java)
+            startActivity(intent) // 跳轉到禮物盒介面
+        }
+    }
 }

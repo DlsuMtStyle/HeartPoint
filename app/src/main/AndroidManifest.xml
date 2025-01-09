@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HeartPoint">
         <activity
+            android:name=".EventRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GiftRedeemRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GiftActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditPasswordActivity"
             android:exported="false" />
         <activity

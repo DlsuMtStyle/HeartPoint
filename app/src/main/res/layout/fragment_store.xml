@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment_store"
+    tools:context=".StoreFragment"
     android:background="#F5F5F5">
 
     <!-- 頂部標題 -->
@@ -53,6 +53,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:text="點數"
+            android:textSize="16dp"
             android:padding="8dp"
             android:layout_marginStart="8dp"
             android:textColor="#4A4A4A"
@@ -69,6 +70,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:text="時間"
+            android:textSize="16dp"
             android:padding="8dp"
             android:layout_marginStart="8dp"
             android:textColor="#4A4A4A"

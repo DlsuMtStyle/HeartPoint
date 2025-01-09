@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.heartpoint.models.Event
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -17,6 +16,8 @@ class EventDetailsActivity : AppCompatActivity() {
     private lateinit var btnRegisterEvent: Button
     private val db = FirebaseFirestore.getInstance() // Firestore 實例
     private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+    private var eventTitle: String? = null // 用來記錄活動標題
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +46,6 @@ class EventDetailsActivity : AppCompatActivity() {
                 Toast.makeText(this, "無法獲取活動資訊，請稍後再試", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     private fun checkRegistrationStatus(eventId: String, userId: String) {
@@ -94,9 +94,36 @@ class EventDetailsActivity : AppCompatActivity() {
             .set(registrationData)
             .addOnSuccessListener {
                 Toast.makeText(this, "已成功報名！", Toast.LENGTH_SHORT).show()
+
+                // 將報名記錄新增到用戶的 event_records 子集合
+                recordEventForUser(eventId, userId)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "報名失敗，請稍後再試", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun recordEventForUser(eventId: String, userId: String) {
+        if (eventTitle == null) {
+            Toast.makeText(this, "無法獲取活動標題，無法記錄報名", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val eventRecordData = mapOf(
+            "title" to eventTitle,
+            "date" to System.currentTimeMillis() // 紀錄報名的日期（時間戳）
+        )
+
+        db.collection("users")
+            .document(userId)
+            .collection("event_records")
+            .document(eventId)
+            .set(eventRecordData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "報名記錄已成功儲存！", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "儲存報名記錄失敗：${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -105,7 +132,9 @@ class EventDetailsActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document != null && document.exists()) {
-                    val title = document.getString("title") ?: ""
+                    eventTitle = document.getString("title") ?: "未提供標題" // 儲存活動標題
+
+                    val title = eventTitle ?: ""
                     val image = document.getString("image") ?: ""
                     val dateRange = document.getString("date") ?: "未知"
                     val locationName = document.getString("location_detail") ?: "未知"
@@ -120,11 +149,11 @@ class EventDetailsActivity : AppCompatActivity() {
                     findViewById<TextView>(R.id.tv_event_address).text = "活動地址：$address"
                     findViewById<TextView>(R.id.tv_event_time).text = "活動時間：$time"
                     findViewById<TextView>(R.id.tv_event_point).text = point.toString()
-                    val img_event_detail = findViewById<ImageView>(R.id.img_event_detail)
+                    val imgEventDetail = findViewById<ImageView>(R.id.img_event_detail)
 
                     Glide.with(this)
                         .load(image) // 從 URL 加載圖片
-                        .into(img_event_detail) // imgEventDetail 是你的 ImageView 的 id
+                        .into(imgEventDetail)
                 } else {
                     Toast.makeText(this, "無法找到活動詳情", Toast.LENGTH_SHORT).show()
                 }

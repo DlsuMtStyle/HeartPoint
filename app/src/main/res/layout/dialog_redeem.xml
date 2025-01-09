@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 輸入數量 -->
+    <EditText
+        android:id="@+id/et_redeem_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint=""
+        android:background="@android:color/transparent"
+        android:inputType="number"
+        android:backgroundTint="#4A4A4A"
+        android:padding="8dp"
+        android:textSize="16sp" />
+
+</LinearLayout>
